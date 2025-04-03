@@ -13,6 +13,48 @@ class DoublyLinkedList:
     def length(self) -> int:
         return self.size
     
+    def append(self, element: str) -> None:
+        if len(element) != 1:
+            raise ValueError("Element must be a single character")
+        
+        new_node = Node(element)
+        if not self.head:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.prev = self.tail
+            self.tail.next = new_node
+            self.tail = new_node
+        self.size += 1
+    
+    def insert(self, element: str, index: int) -> None:
+        if len(element) != 1:
+            raise ValueError("Element must be a single character")
+        if index < 0 or index > self.size:
+            raise IndexError("Index out of range")
+        
+        if index == 0:
+            new_node = Node(element)
+            new_node.next = self.head
+            if self.head:
+                self.head.prev = new_node
+            self.head = new_node
+            if not self.tail:
+                self.tail = new_node
+        elif index == self.size:
+            self.append(element)
+            return
+        else:
+            current = self.head
+            for _ in range(index):
+                current = current.next
+            new_node = Node(element)
+            new_node.prev = current.prev
+            new_node.next = current
+            current.prev.next = new_node
+            current.prev = new_node
+        self.size += 1
+    
     def __str__(self):
         elements = []
         current = self.head
