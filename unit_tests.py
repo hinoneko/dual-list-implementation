@@ -1,5 +1,5 @@
 import unittest
-from doubly_linked_list import DoublyLinkedList
+from array_list import ArrayList
 
 
 class TestListImplementations(unittest.TestCase):
@@ -73,8 +73,8 @@ class TestListImplementations(unittest.TestCase):
         with self.assertRaises(ValueError):
             lst.append('ab')
     
-    def test_doubly_linked_list(self):
-        self._test_implementation(DoublyLinkedList)
+    def test_array_list(self):
+        self._test_implementation(ArrayList)
 
 if __name__ == '__main__':
     unittest.main()

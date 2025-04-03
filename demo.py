@@ -1,4 +1,4 @@
-from doubly_linked_list import DoublyLinkedList
+from array_list import ArrayList
 
 
 def demonstrate_list_operations(list_impl):
@@ -60,5 +60,5 @@ def demonstrate_list_operations(list_impl):
     print("Length after clear:", list_impl.length())
 
 if __name__ == "__main__":
-    print("=== Doubly Linked List Implementation ===")
-    demonstrate_list_operations(DoublyLinkedList())
+    print("=== Array List Implementation ===")
+    demonstrate_list_operations(ArrayList())
