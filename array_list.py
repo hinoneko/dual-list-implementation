@@ -51,8 +51,8 @@ class ArrayList:
     def findLast(self, element: str) -> int:
         if len(element) != 1:
             raise ValueError("Element must be a single character")
-        for i in range(len(self.elements), -1, -1):
-            if i < len(self.elements) and self.elements[i] == element:
+        for i in range(len(self.elements)-1, -1, -1):
+            if self.elements[i] == element:
                 return i
         return -1
     
@@ -60,7 +60,7 @@ class ArrayList:
         self.elements = []
     
     def extend(self, elements: 'ArrayList') -> None:
-        self.elements.extend(reversed(elements.elements))
+        self.elements.extend(elements.elements)
     
     def __str__(self):
         return str(self.elements)
