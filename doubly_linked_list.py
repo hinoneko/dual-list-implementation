@@ -88,7 +88,83 @@ class DoublyLinkedList:
         for _ in range(index):
             current = current.next
         return current.data
+
+    def deleteAll(self, element: str) -> None:
+        if len(element) != 1:
+            raise ValueError("Element must be a single character")
+        
+        current = self.head
+        while current:
+            if current.data == element:
+                if current.prev:
+                    current.prev.next = current.next
+                else:
+                    self.head = current.next
+                
+                if current.next:
+                    current.next.prev = current.prev
+                else:
+                    self.tail = current.prev
+                
+                self.size -= 1
+            current = current.next
     
+    def clone(self) -> 'DoublyLinkedList':
+        new_list = DoublyLinkedList()
+        current = self.head
+        while current:
+            new_list.append(current.data)
+            current = current.next
+        return new_list
+    
+    def reverse(self) -> None:
+        current = self.head
+        while current:
+            temp = current.next
+            current.next = current.prev
+            current.prev = temp
+            current = temp
+        temp = self.head
+        self.head = self.tail
+        self.tail = temp
+    
+    def findFirst(self, element: str) -> int:
+        if len(element) != 1:
+            raise ValueError("Element must be a single character")
+        
+        current = self.head
+        index = 0
+        while current:
+            if current.data == element:
+                return index
+            current = current.next
+            index += 1
+        return -1
+    
+    def findLast(self, element: str) -> int:
+        if len(element) != 1:
+            raise ValueError("Element must be a single character")
+        
+        current = self.tail
+        index = self.size - 1
+        while current:
+            if current.data == element:
+                return index
+            current = current.prev
+            index -= 1
+        return -1
+    
+    def clear(self) -> None:
+        self.head = None
+        self.tail = None
+        self.size = 0
+    
+    def extend(self, elements: 'DoublyLinkedList') -> None:
+        current = elements.head
+        while current:
+            self.append(current.data)
+            current = current.next
+            
     def __str__(self):
         elements = []
         current = self.head
