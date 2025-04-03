@@ -25,7 +25,7 @@ jobs:
         
     - name: Run unit tests
       run: |
-        python -m unittest discover -s tests -v
+        python -m unittest unit_tests.py -v
         
     - name: Run demonstration
       run: |
